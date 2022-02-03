@@ -20,3 +20,5 @@ def cena_dla_produktu(produkt):
 
 def aktualizuj_magazyn(produkt, zamowiona_ilosc):
     lista_produktow[produkt]['ilosc'] -= zamowiona_ilosc
+
+print("cos")
