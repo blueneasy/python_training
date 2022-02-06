@@ -1,5 +1,6 @@
 import random
 from .Product import Product, product1, product2, product3
+from .Product import wypisz_produkt
 
 
 class Order:
@@ -15,20 +16,26 @@ class Order:
         self.total_price = total_price
 
 
-def wypisz_zamowienie():
-    for i in orders:
-        print(i.client_name, [i.product_list])
+def wypisz_zamowienie(order):
+    print(f'-----Zamowienie-----')
+    print(f'Klient: {order.client_name}')
+    print(f'O łącznej wartości {order.total_price} PLN')
+    print('Zamówione produkty:')
+    products_formatted = []
+    for i in order.product_list:
+        products_formatted.append(wypisz_produkt(i))
+    print('=' * 20)
+
+
 
 
 def generuj_zamowienie():
     random_lista = []
-    for i in range(0, random.randint(1, 20)):
+    for i in range(random.randint(1, 20)):
         random_product = Product('Produkt-'+str(i), 'random', 100)
         random_lista.append(random_product)
     nowe_zamowienie = Order('Kowalski', random_lista)
-    print(nowe_zamowienie)
-    print(nowe_zamowienie.client_name, random_lista[0].name)
-
+    orders.append(nowe_zamowienie)
 
 order1 = Order('Janusz Jarzyna', [product1, product2, product3])
 order2 = Order('Mirosław Łotysz', [product3])
