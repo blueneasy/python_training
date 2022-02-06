@@ -1,7 +1,6 @@
-from store.Order import wypisz_zamowienie, generuj_zamowienie, order2, orders
+from store.Order import Order, generuj_zamowienie, order2, orders
 
 if __name__ == '__main__':
-    wypisz_zamowienie(order2)
+    # order2.wypisz_zamowienie()
     generuj_zamowienie()
-    wypisz_zamowienie(orders[3])
-
+    orders[3].wypisz_zamowienie()

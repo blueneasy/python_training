@@ -5,9 +5,8 @@ class Product:
         self.category = category
         self.unit_price = unit_price
 
-
-def wypisz_produkt(product):
-    print(f'Nazwa: {product.name} | Kategoria: {product.category} | Cena: {product.unit_price}')
+    def wypisz_produkt(self):
+        print(f'Nazwa: {self.name} | Kategoria: {self.category} | Cena: {self.unit_price}')
 
 
 product1 = Product('pianino', 'instrumenty', 1200)

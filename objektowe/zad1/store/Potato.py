@@ -6,6 +6,10 @@ class Potato:
         self.kg_price = kg_price
         self.unit_price = self.kg_price * self.size
 
+    def total_price(self, size):
+        total_price = self.kg_price * size
+        return total_price
+
 
 potato1 = Potato('ziemniak', 0.4, 0.06)
 potato2 = Potato('topinambur', 0.3, 0.1)
