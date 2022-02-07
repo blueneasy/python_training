@@ -6,6 +6,9 @@ class Apple:
         self.kg_price = kg_price
         self.unit_price = self.kg_price * self.size
 
+    def __repr__(self):
+        return f'sort={self.sort}, size={self.size}, kg_price={self.kg_price}, unit_price={self.unit_price}'
+
     def total_price(self, size):
         total_price = self.kg_price * size
         return total_price
@@ -14,3 +17,5 @@ class Apple:
 apple1 = Apple('szampion', 1, 1.54)
 apple2 = Apple('lobo', 0.7, 1.2)
 apple3 = Apple('jonagold', 0.9, 1.6)
+
+

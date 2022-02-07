@@ -6,6 +6,10 @@ class Potato:
         self.kg_price = kg_price
         self.unit_price = self.kg_price * self.size
 
+    def __repr__(self):
+        return f'sort={self.sort}, size={self.size}, kg_price={self.kg_price}, unit_price={self.unit_price}'
+
+
     def total_price(self, size):
         total_price = self.kg_price * size
         return total_price

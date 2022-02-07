@@ -1,6 +1,13 @@
-from store.Order import Order, generuj_zamowienie, order2, orders
+from store.Order import generuj_zamowienie, orders
+
+
+def run_homework():
+    generuj_zamowienie()
+    print(orders[2])
+
 
 if __name__ == '__main__':
-    # order2.wypisz_zamowienie()
-    generuj_zamowienie()
-    orders[3].wypisz_zamowienie()
+    run_homework()
+
+
+

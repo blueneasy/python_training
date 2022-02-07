@@ -1,6 +1,6 @@
 import random
-from store.Product import Product, product1, product2, product3
-# from .Product import wypisz_produkt
+from store.Product import Product
+from store.OrderElement import OrderElement
 
 
 class Order:
@@ -9,65 +9,69 @@ class Order:
         if order_elements is None:
             order_elements = []
         self.order_elements = order_elements
+        self.order_price = self.order_price()
 
     def order_price(self):
         order_price = 0
         for element in self.order_elements:
-            order_price += element.element_price()
+            order_price += element.element_price
         return order_price
 
-    def wypisz_zamowienie(self):
-        print(f'-----Zamowienie-----')
-        print(f'Klient: {self.client_name}')
-        print(f'Łączna wartość: {self.order_price()} PLN')
-        print('Zamówione produkty:')
+    def __str__(self):
+        header = (
+            f'-----Zamowienie-----\n'
+            f'Klient: {self.client_name}\n'
+            f'Zamówione produkty:\n'
+        )
 
+        details = ""
         for element in self.order_elements:
-            element.wypisz_element()
+            details += f'\t{element} \n'
 
-        # products_formatted = []
-        # for i in self.order_elements:
-        #     products_formatted.append(Product.wypisz_produkt(i))
-        print('=' * 20)
+        footer = (
+                '\t' * 15 + '=' * 25 + '\n'
+                + '\t' * 15 + f'Łączna wartość: {self.order_price} PLN.'
+        )
 
+        return header + details + footer
 
-class OrderElement:
-    def __init__(self, product, quantity):
-        self.quantity = quantity
-        self.product = product
+    def __len__(self):
+        return len(self.order_elements)
 
-    def element_price(self):
-        element_price = self.quantity * self.product.unit_price
-        return element_price
+    def __eq__(self, other):
+        if self.__class__ != other.__class__:
+            return NotImplemented
+        return self.client_name == other.client_name and \
+            len(self) == len(other) and \
+            porownaj_listy(self.order_elements, other.order_elements)
 
-    def wypisz_element(self):
-        print(f'Nazwa produktu: {self.product.name} | Ilość: {self.quantity} | Cena/szt: {self.product.unit_price} | Wartość: {self.element_price()}')
-
-
-# def generuj_zamowienie():
-#     random_lista_elementy = []
-#     for i in range(random.randint(1, 20)):
-#         random_product = Product('Produkt-'+str(i+1), 'random', 100)
-#         random_lista_elementy.append([random_product, 1])
-#     nowe_zamowienie = Order('Kowalski', random_lista_elementy)
-#     orders.append(nowe_zamowienie)
 
 def generuj_zamowienie():
     lista_elementow = []
     for i in range(random.randint(1, 20)):
-        random_product = Product('Produkt-'+str(i+1), 'random', 100)
+        random_product = Product('Produkt-' + str(i + 1), 'random', 100)
         element = OrderElement(random_product, random.randint(1, 16))
         lista_elementow.append(element)
     nowe_zamowienie = Order('Katarzyna Zwijaj-Rogala', lista_elementow)
     orders.append(nowe_zamowienie)
 
 
-order1 = Order('Janusz Jarzyna', [product1, product2, product3])
-order2 = Order('Mirosław Łotysz', [product3, 2])
-order3 = Order('Hubert Chrząkała', [product3, product2])
+def porownaj_listy(lista_a, lista_b):
+    for i in lista_a:
+        if i not in lista_b:
+            return False
+    return True
+
+
+order1 = Order('Janusz Jarzyna', [OrderElement(Product('Testowy2', 'randomowa', 124), 5),
+                                  OrderElement(Product('Testowy', 'randomowa', 124), 7)])
+order2 = Order('Janusz Jarzyna', [OrderElement(Product('Testowy', 'randomowa', 124), 5),
+                                  OrderElement(Product('Testowy2', 'randomowa', 124), 5)])
+#
+# element1 = OrderElement(Product('Testowy', 'randomowa', 124), 4)
+# element2 = OrderElement(Product('Testowy', 'randomowa', 124), 5)
 
 orders = [
     order1,
-    order2,
-    order3,
+    order2
 ]
