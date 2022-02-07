@@ -4,18 +4,23 @@ from store.OrderElement import OrderElement
 
 
 class Order:
-    def __init__(self, client_name, order_elements=None):
+    def __init__(self, client_name, _order_elements=None):
         self.client_name = client_name
-        if order_elements is None:
-            order_elements = []
-        self.order_elements = order_elements
-        self.order_price = self.order_price()
+        if _order_elements is None:
+            _order_elements = []
+        self._order_elements = _order_elements
+        self.order_price = self._order_price()
 
-    def order_price(self):
+    def _order_price(self):
         order_price = 0
-        for element in self.order_elements:
+        for element in self._order_elements:
             order_price += element.element_price
         return order_price
+
+    def dodaj_element(self, product, quantity):
+        new_element = OrderElement(product, quantity)
+        self._order_elements.append(new_element)
+        self.order_price = self._order_price()
 
     def __str__(self):
         header = (
@@ -25,7 +30,7 @@ class Order:
         )
 
         details = ""
-        for element in self.order_elements:
+        for element in self._order_elements:
             details += f'\t{element} \n'
 
         footer = (
@@ -36,14 +41,14 @@ class Order:
         return header + details + footer
 
     def __len__(self):
-        return len(self.order_elements)
+        return len(self._order_elements)
 
     def __eq__(self, other):
         if self.__class__ != other.__class__:
             return NotImplemented
         return self.client_name == other.client_name and \
             len(self) == len(other) and \
-            porownaj_listy(self.order_elements, other.order_elements)
+            porownaj_listy(self._order_elements, other.order_elements)
 
 
 def generuj_zamowienie():
@@ -67,7 +72,8 @@ order1 = Order('Janusz Jarzyna', [OrderElement(Product('Testowy2', 'randomowa', 
                                   OrderElement(Product('Testowy', 'randomowa', 124), 7)])
 order2 = Order('Janusz Jarzyna', [OrderElement(Product('Testowy', 'randomowa', 124), 5),
                                   OrderElement(Product('Testowy2', 'randomowa', 124), 5)])
-#
+
+
 # element1 = OrderElement(Product('Testowy', 'randomowa', 124), 4)
 # element2 = OrderElement(Product('Testowy', 'randomowa', 124), 5)
 
