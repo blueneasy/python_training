@@ -4,11 +4,18 @@ from store.OrderElement import OrderElement
 
 
 class Order:
-    def __init__(self, client_name, _order_elements=None):
+
+    MAX_ORDER_ELEMENTS = 8
+
+    def __init__(self, client_name, order_elements=None):
         self.client_name = client_name
-        if _order_elements is None:
-            _order_elements = []
-        self._order_elements = _order_elements
+
+        if order_elements is None:
+            order_elements = []
+        elif len(order_elements) > Order.MAX_ORDER_ELEMENTS:
+            order_elements = order_elements[:Order.MAX_ORDER_ELEMENTS]
+            print(f'Przekroczono liczbę możliwych linii - {Order.MAX_ORDER_ELEMENTS}!')
+        self._order_elements = order_elements
         self.order_price = self._order_price()
 
     def _order_price(self):
@@ -18,9 +25,23 @@ class Order:
         return order_price
 
     def dodaj_element(self, product, quantity):
-        new_element = OrderElement(product, quantity)
-        self._order_elements.append(new_element)
-        self.order_price = self._order_price()
+        if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:
+            new_element = OrderElement(product, quantity)
+            self._order_elements.append(new_element)
+            self.order_price = self._order_price()
+            print('Dodano element!')
+        else:
+            print(f'Nie dodano elementu - przekracza maksymalną ilość elementów - {Order.MAX_ORDER_ELEMENTS}!')
+
+    @classmethod
+    def generuj_zamowienie(cls, number_of_products):
+        lista_elementow = []
+        for i in range(random.randint(number_of_products, number_of_products)):
+            random_product = Product('Produkt-' + str(i + 1), 'Fruit', 100)
+            element = OrderElement(random_product, random.randint(1, 16))
+            lista_elementow.append(element)
+        nowe_zamowienie = Order('Katarzyna Zwijaj-Rogala', lista_elementow)
+        orders.append(nowe_zamowienie)
 
     def __str__(self):
         header = (
@@ -49,16 +70,6 @@ class Order:
         return self.client_name == other.client_name and \
             len(self) == len(other) and \
             porownaj_listy(self._order_elements, other.order_elements)
-
-
-def generuj_zamowienie():
-    lista_elementow = []
-    for i in range(random.randint(1, 20)):
-        random_product = Product('Produkt-' + str(i + 1), 'random', 100)
-        element = OrderElement(random_product, random.randint(1, 16))
-        lista_elementow.append(element)
-    nowe_zamowienie = Order('Katarzyna Zwijaj-Rogala', lista_elementow)
-    orders.append(nowe_zamowienie)
 
 
 def porownaj_listy(lista_a, lista_b):
