@@ -3,9 +3,9 @@ class OrderElement:
     def __init__(self, product, quantity):
         self.quantity = quantity
         self.product = product
-        self.element_price = self.element_price()
+        self.element_price = self.calc_element_price()
 
-    def element_price(self):
+    def calc_element_price(self):
         element_price = self.quantity * self.product.unit_price
         return element_price
 
@@ -17,4 +17,3 @@ class OrderElement:
             return NotImplemented
         return self.product == other.product and \
             self.quantity == other.quantity
-
