@@ -1,4 +1,3 @@
-import random
 from store.Product import Product
 from store.OrderElement import OrderElement
 from store.Policies import Policies
@@ -35,16 +34,6 @@ class Order:
             print('Dodano element!')
         else:
             print(f'Nie dodano elementu - przekracza maksymalną ilość elementów - {Order.MAX_ORDER_ELEMENTS}!')
-
-    @classmethod
-    def generuj_zamowienie(cls, number_of_products, policy=Policies.default_policy):
-        lista_elementow = []
-        for i in range(random.randint(number_of_products, number_of_products)):
-            random_product = Product('Produkt-' + str(i + 1), 'Fruit', 100)
-            element = OrderElement(random_product, random.randint(1, 16))
-            lista_elementow.append(element)
-        nowe_zamowienie = Order('Katarzyna Zwijaj-Rogala', lista_elementow, policy)
-        orders.append(nowe_zamowienie)
 
     def __str__(self):
         header = (

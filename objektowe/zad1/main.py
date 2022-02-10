@@ -1,8 +1,6 @@
-from store.Order import orders, Order
-from store.Product import Product
-from store.TaxCalculator import TaxCalculator
-from store.OrderElement import OrderElement
+from store.Order import orders
 from store.Policies import Policies
+from store.data_generator import generuj_zamowienie
 
 
 def element_price(order_element):
@@ -10,7 +8,7 @@ def element_price(order_element):
 
 
 def run_homework():
-    Order.generuj_zamowienie(5, Policies.loyal_customer_policy)
+    generuj_zamowienie(policy=Policies.loyal_customer_policy)
     print(orders[2])
 
     elements = orders[2]._order_elements
