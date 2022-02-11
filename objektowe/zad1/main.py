@@ -8,7 +8,7 @@ def element_price(order_element):
 
 
 def run_homework():
-    generuj_zamowienie(policy=Policies.loyal_customer_policy)
+    generuj_zamowienie(50, policy=Policies.loyal_customer_policy)
     print(orders[2])
 
     elements = orders[2]._order_elements
