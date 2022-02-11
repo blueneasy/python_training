@@ -25,4 +25,5 @@ def generuj_zamowienie(number_of_products=None, policy=Policies.default_policy):
         element = OrderElement(random_product, quantity)
         lista_elementow.append(element)
     nowe_zamowienie = Order('Katarzyna Zwijaj-Rogala', lista_elementow, policy)
-    orders.append(nowe_zamowienie
+    orders.append(nowe_zamowienie)
+

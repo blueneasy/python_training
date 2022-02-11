@@ -12,9 +12,9 @@ class Order:
         self.client_name = client_name
 
         if order_elements is None:
-            self.order_elements = []
+            order_elements = []
         elif len(order_elements) > Order.MAX_ORDER_ELEMENTS:
-            self.order_elements = order_elements[:Order.MAX_ORDER_ELEMENTS]
+            order_elements = order_elements[:Order.MAX_ORDER_ELEMENTS]
             print(f'Przekroczono liczbę możliwych linii - {Order.MAX_ORDER_ELEMENTS}!')
         self._order_elements = order_elements
         self.order_price = self._order_price()
@@ -30,7 +30,8 @@ class Order:
             print(f'Przekroczono maxymalną ilość elementów - {Order.MAX_ORDER_ELEMENTS}!')
         self.order_price = self._order_price()
 
-    def _order_price(self):
+    @property
+    def order_price(self):
         order_price = 0
         for element in self._order_elements:
             order_price += element.element_price
