@@ -1,6 +1,6 @@
 from store.Order import orders
 from store.Policies import Policies
-from store.data_generator import generuj_zamowienie
+from store.data_generator import Generator
 
 
 def element_price(order_element):
@@ -8,13 +8,17 @@ def element_price(order_element):
 
 
 def run_homework():
-    generuj_zamowienie(50, policy=Policies.loyal_customer_policy)
+    Generator.generuj_zamowienie(50, policy=Policies.loyal_customer_policy)
     print(orders[2])
 
-    elements = orders[2]._order_elements
-    elements.sort(key=lambda element: element.calc_element_price(), reverse=True)
-    for element in elements:
-        print(element)
+    # elements = orders[2]._order_elements
+    # elements.sort(key=lambda element: element.calc_element_price(), reverse=True)
+    # for element in elements:
+    #     print(element)
+
+    nowe_linie = Generator.generuj_linie_zamowienia(40)
+    orders[2].order_elements = nowe_linie
+    print(orders[2])
 
     # orders[2].dodaj_element(Product('Testowy', 'randomowa', 124), 4)
     # print(orders[2])
@@ -31,6 +35,7 @@ def run_homework():
     # print(f'Cena marchwi: {marchew.element_price}zł + tax {tax_marchew}zł')
     # print(f'Cena wołowiny: {wolowina.element_price}zł + tax {tax_wolowina}zł')
     # print(f'Cena roweru: {rower.element_price}zł + tax {tax_rower}zł')
+
 
 
 if __name__ == '__main__':
