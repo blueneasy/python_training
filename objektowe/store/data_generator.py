@@ -1,8 +1,9 @@
-from store.Policies import Policies
-from store.Product import Product
+from objektowe.store.Policies import Policies
+from objektowe.store.Product import Product
 import random
-from store.OrderElement import OrderElement
-from store.Order import Order, orders
+from objektowe.store.OrderElement import OrderElement
+from objektowe.store.Order import Order, orders
+from objektowe.store.StudentListPack import StudentList
 
 
 class Generator:
@@ -15,7 +16,7 @@ class Generator:
 
     @staticmethod
     def generuj_zamowienie(number_of_products=None, policy=Policies.default_policy):
-        lista_elementow = []
+        lista_elementow = StudentList()
         if number_of_products is None:
             number_of_products = random.randint(1, Order.MAX_ORDER_ELEMENTS)
 
