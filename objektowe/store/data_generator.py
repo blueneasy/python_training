@@ -21,10 +21,11 @@ class Generator:
             number_of_products = random.randint(1, Order.MAX_ORDER_ELEMENTS)
 
         for i in range(number_of_products):
+            product_id = random.randint(1, 1000)
             product_name = 'Produkt-' + str(i + 1)
             category = 'Fruit'
             unit_price = random.randint(Generator.MIN_UNIT_PRICE, Generator.MAX_UNIT_PRICE)
-            random_product = Product(product_name, category, unit_price)
+            random_product = Product(product_id, product_name, category, unit_price)
             quantity = random.randint(Generator.MIN_QUANTITY, Generator.MAX_QUANTITY)
             element = OrderElement(random_product, quantity)
             lista_elementow.append(element)
@@ -38,11 +39,18 @@ class Generator:
             number_of_products = random.randint(1, Order.MAX_ORDER_ELEMENTS)
 
         for i in range(number_of_products):
-            product_name = 'Produkt-' + str(i + 1)
+            product_id = random.randint(1, 1000)
+            product_name = 'Produkt-' + str(random.choice(range(8)))
             category = 'Fruit'
             unit_price = random.randint(Generator.MIN_UNIT_PRICE, Generator.MAX_UNIT_PRICE)
-            random_product = Product(product_name, category, unit_price)
+            random_product = Product(product_id, product_name, category, unit_price)
             quantity = random.randint(Generator.MIN_QUANTITY, Generator.MAX_QUANTITY)
             element = OrderElement(random_product, quantity)
             lista_elementow.append(element)
         return lista_elementow
+
+    @staticmethod
+    def products_delivery(no_of_products):
+        delivery = ['Produkt-' + str(random.choice(range(10))) for i in range(no_of_products)]
+        return delivery
+

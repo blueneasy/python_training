@@ -112,26 +112,25 @@ def porownaj_listy(lista_a, lista_b):
     return True
 
 
-order1 = Order('Janusz Jarzyna', [OrderElement(Product('Testowy2', 'randomowa', 124), 5),
-                                  OrderElement(Product('Testowy', 'randomowa', 124), 7)])
-order2 = Order('Janusz Jarzyna', [OrderElement(Product('Testowy', 'randomowa', 124), 5),
-                                  OrderElement(Product('Testowy2', 'randomowa', 124), 5)])
-
-order_express = ExpressOrder('Szybki Michał', [OrderElement(Product('Bardzo potrzebny kabel', 'kable', 12), 1),
-                                               OrderElement(Product('MMMSY', 'łakocie dla Magdy', 4.65), 2)],
-                             policy=DiscountPolicy, delivery_date='21-05-2022')
-
-order_express2 = ExpressOrder('Szybki Michał', [OrderElement(Product('Bardzo potrzebny kabel', 'kable', 12), 1),
-                                                OrderElement(Product('MMMSY', 'łakocie dla Magdy', 4.65), 2)],
-                              policy=abs_100, delivery_date='21-05-2022')
-
-order_express3 = ExpressOrder('Szybki Michał', [OrderElement(Product('Bardzo potrzebny kabel', 'kable', 12), 1),
-                                                OrderElement(Product('MMMSY', 'łakocie dla Magdy', 4.65), 2)],
-                              policy=prc_10, delivery_date='21-05-2022')
+order1 = Order('Janusz Jarzyna', [OrderElement(Product(2147, 'Testowy2', 'randomowa', 124), 5),
+                                  OrderElement(Product(666, 'Testowy', 'randomowa', 124), 7)])
+order2 = Order('Janusz Jarzyna', [])
+#
+# order_express = ExpressOrder('Szybki Michał', [OrderElement(Product('Bardzo potrzebny kabel', 'kable', 12), 1),
+#                                                OrderElement(Product('MMMSY', 'łakocie dla Magdy', 4.65), 2)],
+#                              policy=DiscountPolicy, delivery_date='21-05-2022')
+#
+# order_express2 = ExpressOrder('Szybki Michał', [OrderElement(Product('Bardzo potrzebny kabel', 'kable', 12), 1),
+#                                                 OrderElement(Product('MMMSY', 'łakocie dla Magdy', 4.65), 2)],
+#                               policy=abs_100, delivery_date='21-05-2022')
+#
+# order_express3 = ExpressOrder('Szybki Michał', [OrderElement(Product('Bardzo potrzebny kabel', 'kable', 12), 1),
+#                                                 OrderElement(Product('MMMSY', 'łakocie dla Magdy', 4.65), 2)],
+#                               policy=prc_10, delivery_date='21-05-2022')
 
 # element1 = OrderElement(Product('Testowy', 'randomowa', 124), 4)
 # element2 = OrderElement(Product('Testowy', 'randomowa', 124), 5)
-
+#
 orders = [
     order1,
     order2

@@ -1,21 +1,19 @@
+from collections import namedtuple
+from dataclasses import dataclass
 
+
+@dataclass
 class Apple:
-    def __init__(self, sort, size, kg_price):
-        self.sort = sort
-        self.size = size
-        self.kg_price = kg_price
-        self.unit_price = self.kg_price * self.size
-
-    def __repr__(self):
-        return f'sort={self.sort}, size={self.size}, kg_price={self.kg_price}, unit_price={self.unit_price}'
-
-    def total_price(self, size):
-        total_price = self.kg_price * size
-        return total_price
+    sort: str
+    size: str
+    kg_price: float
 
 
-apple1 = Apple('szampion', 1, 1.54)
-apple2 = Apple('lobo', 0.7, 1.2)
-apple3 = Apple('jonagold', 0.9, 1.6)
+apple1 = Apple('szampion', 'b', 1.54)
+apple2 = Apple('lobo', 's', 1.2)
+apple3 = Apple('jonagold', 'm', 1.6)
 
 
+Apple_tuple = namedtuple('Apple_tuple', ['sort', 'size', 'kg_price'])
+
+apple_t = Apple_tuple('jonagold', 'm', 3)

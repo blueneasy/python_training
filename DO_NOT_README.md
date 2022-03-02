@@ -12,4 +12,4 @@ I put a clean code for every project in a separate folder in 100days repository.
 
 ## Technologies
 
-Written in pure python 3.8.10
+Written in python 3.8.10
