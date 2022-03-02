@@ -1,5 +1,5 @@
 from objektowe.store.Policies import Policies
-from objektowe.store.Product import Product
+from objektowe.store.products import Product
 import random
 from objektowe.store.OrderElement import OrderElement
 from objektowe.store.Order import Order, orders

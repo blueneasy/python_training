@@ -6,7 +6,10 @@ from dataclasses import dataclass
 class Apple:
     sort: str
     size: str
-    kg_price: float
+    price: float
+
+    def calculate_price(self, quantity):
+        return quantity * self.price
 
 
 apple1 = Apple('szampion', 'b', 1.54)

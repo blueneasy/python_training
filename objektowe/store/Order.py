@@ -1,4 +1,4 @@
-from objektowe.store.Product import Product
+from objektowe.store.products import Product
 from objektowe.store.OrderElement import OrderElement
 from objektowe.store.Policies import DiscountPolicy
 from objektowe.store.Policies import abs_100, prc_10
@@ -31,7 +31,7 @@ class Order:
     def order_price(self):
         order_price = 0
         for element in self._order_elements:
-            order_price += element.element_price
+            order_price += element.calc_element_price
         final_price = self.policy.apply_discount(order_price)
         return final_price
 

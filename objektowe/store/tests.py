@@ -1,4 +1,4 @@
-from Product import Product
+from products import Product
 
 
 def test_product_comparison():
